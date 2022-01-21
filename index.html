@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -151,18 +151,13 @@
                     <label class="form-label" for="area">Административный округ</label>
                     <select id="area" class="form-select" aria-label="Default select example">
                         <option selected>Не выбрано</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+
                     </select>
                 </div>
                 <div class="col-lg-6 mt-2">
                     <label class="form-label" for="district">Район</label>
                     <select id="district" class="form-select" aria-label="Default select example">
                         <option selected>Не выбрано</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
                     </select>
                 </div>
             </div>
@@ -171,18 +166,13 @@
                     <label class="form-label" for="type">Тип</label>
                     <select id="type" class="form-select" aria-label="Default select example">
                         <option selected>Не выбрано</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+
                     </select>
                 </div>
                 <div class="col-lg-3 mt-2">
                     <label class="form-label" for="discount">Соц. скидки</label>
                     <select id="discount" class="form-select" aria-label="Default select example">
                         <option selected>Не выбрано</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
                     </select>
                 </div>
                 <div class="col-lg-6 my-auto d-flex">
@@ -194,10 +184,91 @@
         </div>
     </div>
 
-    <footer class="footer text-center py-4 text-muted fs-5">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae dolor delectus ut maiores quasi,
-            consectetur necessitatibus earum eligendi. Id quaerat ad quas. Voluptas reiciendis ab fugiat dolorum commodi
-            aut magni?</p>
+    <div class="container mt-4">
+        <table class="table border">
+            <thead>
+                <tr>
+                    <th scope="col">Название</th>
+                    <th scope="col">Тип</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tr-template">
+                    <th scope="row">Name</th>
+                    <td>Type</td>
+                    <td>Address</td>
+                    <td><button type="button" class="btn btn-primary">Выбрать</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>Type</td>
+                    <td>Address</td>
+                    <td><button type="button" class="btn btn-primary">Выбрать</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>Type</td>
+                    <td>Address</td>
+                    <td><button type="button" class="btn btn-primary">Выбрать</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>Type</td>
+                    <td>Address</td>
+                    <td><button type="button" class="btn btn-primary">Выбрать</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Search results pages">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <footer class="footer text-center py-4 text-muted border-top">
+        <h5>ООО &laquo;Служба доставки еды&raquo;</h5>
+        <div class="row fs-4">
+            <div class="col-lg-4">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                        class="bi bi-envelope" viewbox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                    </svg>
+                    email@email.com
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                        class="bi bi-link-45deg" viewbox="0 0 16 16">
+                        <path
+                            d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z" />
+                        <path
+                            d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z" />
+                    </svg>
+                    food.ru
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                        class="bi bi-facebook" viewbox="0 0 16 16">
+                        <path
+                            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                    </svg>
+                </a>
+
+            </div>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

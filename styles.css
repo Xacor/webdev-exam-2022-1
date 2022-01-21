@@ -1,3 +1,11 @@
 .alert {
     display: none;
 }
+
+.tr-template {
+    display: none;
+}
+
+footer a {
+    text-decoration: none;
+}
