@@ -16,25 +16,29 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-
             <a class="navbar-brand" href="#">
                 <img src="images/dish.png" alt="" height="64" class="d-inline-block"> JoJoPizza
             </a>
-
-            <ul class="navbar-nav me-2">
-                <li class="nav-item">
-                    <a class="nav-link active fs-4" aria-current="page" href="#">Контакты</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fs-4" href="#">Оплата и доставка</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fs-4" aria-current="page" href="#">Войти</a>
-                </li>
-            </ul>
-
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" aria-current="page" href="#">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" href="#">Оплата и доставка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" aria-current="page" href="#">Войти</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -56,21 +60,21 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="images/gettyimages-694177316-2048x2048.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption d-none d-lg-block">
                     <h5>First slide label</h5>
                     <p>Some representative placeholder content for the first slide.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="images/gettyimages-503337620-2048x2048.jpg" class=" d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption d-none d-lg-block">
                     <h5>Second slide label</h5>
                     <p>Some representative placeholder content for the second slide.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="images/gettyimages-622944994-2048x2048.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption d-none d-lg-block">
                     <h5>Third slide label</h5>
                     <p>Some representative placeholder content for the third slide.</p>
                 </div>
@@ -88,61 +92,113 @@
         </button>
     </div>
 
-    <div class="container px-4 py-5" id="featured">
+    <div class="container px-4 py-5 border-bottom" id="featured">
 
         <h2 class="pb-2 border-bottom text-center">Служба доставки</h2>
 
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 text-center">
-            <div class="feature col">
+            <div class="feature col-lg">
                 <div class="feature-icon">
-                    <img src="images/fast-delivery.png">
+                    <img class="img-fluid" src="images/fast-delivery.png">
                 </div>
                 <h2 class="pt-4">Быстрая доставка</h2>
 
             </div>
-            <div class="feature col">
+            <div class="feature col-lg">
                 <div class="feature-icon">
-                    <img src="images/tasty.png">
+                    <img class="img-fluid" src="images/tasty.png">
                 </div>
                 <h2 class="pt-4">Вкусно</h2>
 
             </div>
-            <div class="feature col">
+            <div class="feature col-lg">
                 <div class="feature-icon">
-                    <img src="images/cheap.png">
+                    <img class="img-fluid" src="images/cheap.png">
                 </div>
                 <h2 class="pt-4">Дешево</h2>
 
             </div>
         </div>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 text-center">
-            <div class="feature col">
+            <div class="feature col-lg">
                 <div class="feature-icon">
-                    <img src="images/discount.png">
+                    <img class="img-fluid" src="images/discount.png">
                 </div>
                 <h2 class="pt-4">Скидки студентам</h2>
 
             </div>
-            <div class="feature col">
+            <div class="feature col-lg">
                 <div class="feature-icon">
-                    <img src="images/soup.png">
+                    <img class="img-fluid" src="images/soup.png">
                 </div>
                 <h2 class="pt-4">Доставим еду теплой</h2>
 
             </div>
-            <div class="feature col">
+            <div class="feature col-lg">
                 <div class="feature-icon">
-                    <img src="images/bonus.png">
+                    <img class="img-fluid" src="images/bonus.png">
                 </div>
                 <h2 class="pt-4">Бонусная программа</h2>
 
             </div>
         </div>
     </div>
+    <div class="container mt-4" id="form-container">
+        <h2 class="pb-2 text-center">Выбор предприятия общественного питания</h2>
+        <div class="container border">
+            <div class="row">
+                <div class="col-lg-6 mt-2">
+                    <label class="form-label" for="area">Административный округ</label>
+                    <select id="area" class="form-select" aria-label="Default select example">
+                        <option selected>Не выбрано</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 mt-2">
+                    <label class="form-label" for="district">Район</label>
+                    <select id="district" class="form-select" aria-label="Default select example">
+                        <option selected>Не выбрано</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-lg-3 mt-2">
+                    <label class="form-label" for="type">Тип</label>
+                    <select id="type" class="form-select" aria-label="Default select example">
+                        <option selected>Не выбрано</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 mt-2">
+                    <label class="form-label" for="discount">Соц. скидки</label>
+                    <select id="discount" class="form-select" aria-label="Default select example">
+                        <option selected>Не выбрано</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 my-auto d-flex">
+                    <button type="submit"
+                        class="btn btn-primary btn-block ms-auto mt-4 ">&emsp;&emsp;Найти&emsp;&emsp;</button>
+                </div>
+            </div>
 
-    <div class="container" px-4 py-5 id="form-container">
-
+        </div>
     </div>
+
+    <footer class="footer text-center py-4 text-muted fs-5">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae dolor delectus ut maiores quasi,
+            consectetur necessitatibus earum eligendi. Id quaerat ad quas. Voluptas reiciendis ab fugiat dolorum commodi
+            aut magni?</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
