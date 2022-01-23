@@ -29,13 +29,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2">
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" aria-current="page" href="#">Контакты</a>
+                        <a class="nav-link active fs-5" aria-current="page" href="#contacts">Контакты</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" href="#">Оплата и доставка</a>
+                        <a class="nav-link active fs-5" aria-current="page" href="#delivery">Доставка</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" aria-current="page" href="#">Войти</a>
+                        <a class="nav-link active fs-5" aria-current="page" href="#choose-restaraunt">Заказать</a>
                     </li>
                 </ul>
             </div>
@@ -48,51 +48,44 @@
     </div>
 
 
-    <section id="carouselExampleCaptions" class="carousel slide col-sm-5 mx-auto" data-bs-ride="carousel">
+    <section id="carousel-food" class="carousel slide col-sm-5 mx-auto" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            <button type="button" data-bs-target="#carousel-food" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carousel-food" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carousel-food" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="images/gettyimages-694177316-2048x2048.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-lg-block">
                     <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="images/gettyimages-503337620-2048x2048.jpg" class=" d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-lg-block">
                     <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="images/gettyimages-622944994-2048x2048.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-lg-block">
                     <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-food" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-food" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </section>
 
-    <section class="container px-4 py-5 border-bottom" id="featured">
+    <section class="container px-4 py-5 border-bottom" id="delivery">
 
         <h2 class="pb-2 border-bottom text-center">Служба доставки</h2>
 
@@ -143,9 +136,9 @@
             </div>
         </div>
     </section>
-    <section class="container mt-4" id="form-container">
+    <section class="container mt-4" id="choose-restaraunt">
         <h2 class="pb-2 text-center">Выбор предприятия общественного питания</h2>
-        <div class="container border">
+        <form class="container border">
             <div class="row">
                 <div class="col-lg-6 mt-2">
                     <label class="form-label" for="area">Административный округ</label>
@@ -175,13 +168,12 @@
                         <option selected>Не выбрано</option>
                     </select>
                 </div>
-                <div class="col-lg-3 mt-2"></div>
-                <div class="col-lg-3 my-auto d-flex">
-                    <button type="submit" class="btn btn-primary ms-auto mt-4 w-100 ">Найти</button>
+                <div class="col-lg-6 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mt-4 w-50 ">Найти</button>
                 </div>
             </div>
 
-        </div>
+        </form>
     </section>
 
     <section class="container mt-4">
@@ -223,11 +215,11 @@
         </table>
         <nav aria-label="Search results pages">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">Предыдщая страница</a></li>
                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <li class="page-item"><a class="page-link" href="#">Следующая страница</a></li>
             </ul>
         </nav>
     </section>
@@ -288,9 +280,44 @@
             </div>
         </div>
     </section>
+    <section class="container">
+        <h1>Дополнительные опции</h1>
+        <form>
+            <div class="row align-items-center">
+                <div class="form-check col-2 mx-auto">
+                    <label class="form-check-label" for="is-student">
+                        Являюсь студентом ВУЗа
+                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="is-student">
+                </div>
+            </div>
+            <div class="row align-items-center mt-3">
+                <div class="form-check col-2 mx-auto">
+                    <label class="form-check-label" for="fast-delivery">
+                        Быстрая доставка
+                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="fast-delivery" checked>
+                </div>
+            </div>
+        </form>
+    </section>
 
+    <section class="container border my-4 fs-4 py-3">
+        <div class="row">
+            <div class="col-lg-6">
+                <strong>
+                    <span>Итого: </span>
+                    <span>0 </span>
+                    <span>руб.</span>
+                </strong>
+            </div>
+            <div class="col-lg-6 d-flex justify-content-end">
+                <button class="btn btn-primary" type="button">Оформить заказ</button>
+            </div>
+        </div>
+    </section>
 
-    <footer class="footer text-center py-4 text-muted border-top">
+    <footer class="footer text-center py-4 text-muted border-top" id="contacts">
         <h5>ООО &laquo;Служба доставки еды&raquo;</h5>
         <div class="row fs-4">
             <div class="col-lg-4">
