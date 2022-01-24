@@ -42,7 +42,7 @@
         </div>
     </nav>
 
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert">
         <strong>Holy guacamole!</strong> You should check in on some of those fields below.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -187,30 +187,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="tr-template">
+                <tr class="tr-template d-none">
                     <th scope="row">Name</th>
                     <td>Type</td>
                     <td>Address</td>
                     <td><button type="button" class="btn btn-primary">Выбрать</button></td>
                 </tr>
-                <tr>
-                    <th scope="row">Name</th>
-                    <td>Type</td>
-                    <td>Address</td>
-                    <td><button type="button" class="btn btn-primary">Выбрать</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Name</th>
-                    <td>Type</td>
-                    <td>Address</td>
-                    <td><button type="button" class="btn btn-primary">Выбрать</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Name</th>
-                    <td>Type</td>
-                    <td>Address</td>
-                    <td><button type="button" class="btn btn-primary">Выбрать</button></td>
-                </tr>
+
             </tbody>
         </table>
         <nav aria-label="Search results pages">
@@ -286,17 +269,45 @@
         </div>
         <form>
             <div class="row align-items-center">
-                <div class="form-check col-lg-2 col-4 mx-auto">
+                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
                     <label class="form-check-label" for="is-student">Являюсь студентом ВУЗа</label>
                     <input class="form-check-input pull-right" type="checkbox" value="" id="is-student">
                 </div>
             </div>
-            <div class="row align-items-center mt-3">
-                <div class="form-check col-lg-2 col-4 mx-auto">
-                    <label class="form-check-label" for="fast-delivery">
-                        Быстрая доставка
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="fast-delivery" checked>
+            <div class="row align-items-center">
+                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
+                    <label class="form-check-label" for="fast-delivery">Быстрая доставка</label>
+                    <input class="form-check-input" type="checkbox" value="" id="fast-delivery">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
+                    <label class="form-check-label" for="contactless">Бесконтактная доставка</label>
+                    <input class="form-check-input pull-right" type="checkbox" value="" id="contactless">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
+                    <label class="form-check-label" for="gift">Хочу подарок</label>
+                    <input class="form-check-input pull-right" type="checkbox" value="" id="gift">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
+                    <label class="form-check-label" for="twice">В два раза больше</label>
+                    <input class="form-check-input pull-right" type="checkbox" value="" id="twice">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
+                    <label class="form-check-label" for="for-company">На компанию</label>
+                    <input class="form-check-input pull-right" type="checkbox" value="" id="for-company">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
+                    <label class="form-check-label" for="hot-only">Только горячим</label>
+                    <input class="form-check-input pull-right" type="checkbox" value="" id="hot-only">
                 </div>
             </div>
         </form>
@@ -312,16 +323,151 @@
                 </strong>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button class="btn btn-primary" type="button">Оформить заказ</button>
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                    data-bs-target="#cartModal">Оформить заказ</button>
             </div>
         </div>
     </section>
 
+    <div class="modal  fade" role="document" id="cartModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Оформление заказа</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <h4>Позиции заказа</h4>
+                    <div class="card mb-3 template">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center">
+                                    <div>
+                                        <img src="images/dish.png" class="img-fluid rounded-3" alt="" width="64">
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5></h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <h5 class="fw-normal mb-0">&#8381;</h5>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <h5 class="mb-0">&#8381;</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>Дополнительные опции</h4>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between">
+                            <div>
+                                <span>Студент ВУЗа</span>
+                            </div>
+                            <div>
+                                <span>-10%</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <h4>Информация о предприятии</h4>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between">
+                            <div>
+                                <p>Название предприятия:</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <div>
+                                <p>Административный округ:</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <div>
+                                <p>Район:</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <div>
+                                <p>Адрес:</p>
+                            </div>
+                            <div>
+                                <p class="text-muted"></p>
+                            </div>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <div>
+                                <p>Рейтинг:</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4>Доставка</h4>
+                    <form>
+                        <div class="row mb-4">
+                            <label class="form-label col-lg-4" for="delivery-zone">Зона доставки:</label>
+                            <div class="col-lg-8">
+                                <select id="delivery-zone" class="form-select" aria-label="delivery-zone">
+                                    <option selected>Первая зона</option>
+                                    <option>Вторая зона</option>
+                                    <option>Третья зона</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="form-label col-lg-4" for="delivery-address">Адрес:</label>
+                            <div class="col-lg-8">
+                                <textarea id="delivery-address" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="form-label col-lg-4" for="delivery-address">Стоимость доставки:</label>
+                            <div class="col-lg-8">
+                                <span> 0 руб. </span>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="form-label col-lg-4" for="delivery-address">ФИО получателя:</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="fio" placeholder="Фамилия Имя Отчество">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row mb-4 mt-5">
+                        <div class="col-lg-4">
+                            <h4>Итого:</h4>
+                        </div>
+                        <div class="col-lg-8">
+                            <h4>руб.</h4>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary">Подтвердить</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer class="footer text-center py-4 text-muted border-top" id="contacts">
         <h5>ООО &laquo;Служба доставки еды&raquo;</h5>
         <div class="row fs-4">
             <div class="col-lg-4">
-                <a href="#">
+                <a class="text-decoration-none" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                         class="bi bi-envelope" viewbox="0 0 16 16">
                         <path
@@ -331,7 +477,7 @@
                 </a>
             </div>
             <div class="col-lg-4">
-                <a href="#">
+                <a class="text-decoration-none" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                         class="bi bi-link-45deg" viewbox="0 0 16 16">
                         <path
@@ -343,7 +489,7 @@
                 </a>
             </div>
             <div class="col-lg-4">
-                <a href="#">
+                <a class="text-decoration-none" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                         class="bi bi-facebook" viewbox="0 0 16 16">
                         <path
@@ -354,6 +500,7 @@
             </div>
         </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

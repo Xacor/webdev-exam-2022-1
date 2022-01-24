@@ -2,15 +2,3 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
-
-.alert {
-    display: none;
-}
-
-.tr-template {
-    display: none;
-}
-
-footer a {
-    text-decoration: none;
-}
