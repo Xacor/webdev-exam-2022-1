@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" a href="css/bootstrap.css">
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="main.scss">
 
     <title>Document</title>
 </head>
@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="images/dish.png" alt="" height="64" class="d-inline-block"> JoJoPizza
+                <img src="images/dish.png" alt="" height="64" class="d-inline-block"> JoJoFood
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -90,46 +90,46 @@
         <h2 class="pb-2 border-bottom text-center">Служба доставки</h2>
 
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 text-center">
-            <div class="feature col-lg-4">
+            <div class="feature col-4">
                 <div class="feature-icon">
-                    <img class="img-fluid" src="images/fast-delivery.png">
+                    <img class="img-fluid" src="images/fast-delivery.png" width="128px">
                 </div>
                 <h2 class="pt-4">Быстрая доставка</h2>
 
             </div>
-            <div class="feature col-lg-4">
+            <div class="feature col-4">
                 <div class="feature-icon">
-                    <img class="img-fluid" src="images/tasty.png">
+                    <img class="img-fluid" src="images/tasty.png" width="128px">
                 </div>
                 <h2 class="pt-4">Вкусно</h2>
 
             </div>
-            <div class="feature col-lg-4">
+            <div class="feature col-4">
                 <div class="feature-icon">
-                    <img class="img-fluid" src="images/cheap.png">
+                    <img class="img-fluid" src="images/cheap.png" width="128px">
                 </div>
                 <h2 class="pt-4">Дешево</h2>
 
             </div>
         </div>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 text-center">
-            <div class="feature col-lg-4">
+            <div class="feature col-4">
                 <div class="feature-icon">
-                    <img class="img-fluid" src="images/discount.png">
+                    <img class="img-fluid" src="images/discount.png" width="128px">
                 </div>
                 <h2 class="pt-4">Скидки студентам</h2>
 
             </div>
-            <div class="feature col-lg-4">
+            <div class="feature col-4">
                 <div class="feature-icon">
-                    <img class="img-fluid" src="images/soup.png">
+                    <img class="img-fluid" src="images/soup.png" width="128px">
                 </div>
                 <h2 class="pt-4">Доставим еду теплой</h2>
 
             </div>
-            <div class="feature col-lg-4">
+            <div class="feature col-4">
                 <div class="feature-icon">
-                    <img class="img-fluid" src="images/bonus.png">
+                    <img class="img-fluid" src="images/bonus.png" width="128px">
                 </div>
                 <h2 class="pt-4">Бонусная программа</h2>
 
@@ -207,14 +207,14 @@
         </nav>
     </section>
 
-    <section class="container border-top border-bottom">
-        <h2>Меню</h2>
+    <section class="container border-top border-bottom mt-4">
+        <h2 class="text-center">Меню</h2>
         <div class="row">
             <div class="feature col-lg-4">
                 <div class="card mb-4 rounded-3 shadow-sm text-center">
                     <img class="card-image" src="images/menu1.jpeg">
                     <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Завтрак</h4>
+                        <h4 class="my-0 fw-normal">Сет 1</h4>
                     </div>
                     <div class="card-body">
                         <p class="fs-5"> Вкусный завтрак даст сил на весь день.</p>
@@ -231,7 +231,7 @@
                 <div class="card mb-4 rounded-3 shadow-sm text-center">
                     <img class="card-image" src="images/menu2.jpg">
                     <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Обед</h4>
+                        <h4 class="my-0 fw-normal">Сет 2</h4>
                     </div>
                     <div class="card-body">
                         <p class="fs-5"> Сытный обед ободрит в середине дня.</p>
@@ -248,10 +248,135 @@
                 <div class="card mb-4 rounded-3 shadow-sm text-center">
                     <img class="card-image" src="images/menu3.jpeg">
                     <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Ужин</h4>
+                        <h4 class="my-0 fw-normal">Сет 3</h4>
                     </div>
                     <div class="card-body">
                         <p class="fs-5"> Теплый ужин согреевает вечером.</p>
+                        <h1 class="card-title pricing-card-title">399 руб</h1>
+                        <div class="d-flex justify-content-around mt-4">
+                            <button type="button" class="btn btn-lg btn-outline-primary">-</button>
+                            <span class="fs-3">0</span>
+                            <button type="button" class="btn btn-lg btn-outline-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="feature col-lg-4">
+                <div class="card mb-4 rounded-3 shadow-sm text-center">
+                    <img class="card-image" src="images/menu1.jpeg">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Сет 4</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5"> Вкусный завтрак даст сил на весь день.</p>
+                        <h1 class="card-title pricing-card-title">399 руб</h1>
+                        <div class="d-flex justify-content-around mt-4">
+                            <button type="button" class="btn btn-lg btn-outline-primary">-</button>
+                            <span class="fs-3">0</span>
+                            <button type="button" class="btn btn-lg btn-outline-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature col-lg-4">
+                <div class="card mb-4 rounded-3 shadow-sm text-center">
+                    <img class="card-image" src="images/menu2.jpg">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Сет 5</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5"> Сытный обед ободрит в середине дня.</p>
+                        <h1 class="card-title pricing-card-title">399 руб</h1>
+                        <div class="d-flex justify-content-around mt-4">
+                            <button type="button" class="btn btn-lg btn-outline-primary">-</button>
+                            <span class="fs-3">0</span>
+                            <button type="button" class="btn btn-lg btn-outline-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature col-lg-4">
+                <div class="card mb-4 rounded-3 shadow-sm text-center">
+                    <img class="card-image" src="images/menu3.jpeg">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Сет 6</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5"> Теплый ужин согреевает вечером.</p>
+                        <h1 class="card-title pricing-card-title">399 руб</h1>
+                        <div class="d-flex justify-content-around mt-4">
+                            <button type="button" class="btn btn-lg btn-outline-primary">-</button>
+                            <span class="fs-3">0</span>
+                            <button type="button" class="btn btn-lg btn-outline-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="feature col-lg-4">
+                <div class="card mb-4 rounded-3 shadow-sm text-center">
+                    <img class="card-image" src="images/menu1.jpeg">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Сет 7</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5"> Вкусный завтрак даст сил на весь день.</p>
+                        <h1 class="card-title pricing-card-title">399 руб</h1>
+                        <div class="d-flex justify-content-around mt-4">
+                            <button type="button" class="btn btn-lg btn-outline-primary">-</button>
+                            <span class="fs-3">0</span>
+                            <button type="button" class="btn btn-lg btn-outline-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature col-lg-4">
+                <div class="card mb-4 rounded-3 shadow-sm text-center">
+                    <img class="card-image" src="images/menu2.jpg">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Сет 8</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5"> Сытный обед ободрит в середине дня.</p>
+                        <h1 class="card-title pricing-card-title">399 руб</h1>
+                        <div class="d-flex justify-content-around mt-4">
+                            <button type="button" class="btn btn-lg btn-outline-primary">-</button>
+                            <span class="fs-3">0</span>
+                            <button type="button" class="btn btn-lg btn-outline-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature col-lg-4">
+                <div class="card mb-4 rounded-3 shadow-sm text-center">
+                    <img class="card-image" src="images/menu3.jpeg">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Сет 9</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5"> Теплый ужин согреевает вечером.</p>
+                        <h1 class="card-title pricing-card-title">399 руб</h1>
+                        <div class="d-flex justify-content-around mt-4">
+                            <button type="button" class="btn btn-lg btn-outline-primary">-</button>
+                            <span class="fs-3">0</span>
+                            <button type="button" class="btn btn-lg btn-outline-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="feature col-lg-4">
+                <div class="card mb-4 rounded-3 shadow-sm text-center">
+                    <img class="card-image" src="images/menu1.jpeg">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Сет 10</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5"> Вкусный завтрак даст сил на весь день.</p>
                         <h1 class="card-title pricing-card-title">399 руб</h1>
                         <div class="d-flex justify-content-around mt-4">
                             <button type="button" class="btn btn-lg btn-outline-primary">-</button>
@@ -271,45 +396,16 @@
             <div class="row align-items-center">
                 <div class="form-check col-lg-2 col-4 mx-auto mb-2">
                     <label class="form-check-label" for="is-student">Являюсь студентом ВУЗа</label>
-                    <input class="form-check-input pull-right" type="checkbox" value="" id="is-student">
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <label class="form-check-label" for="fast-delivery">Быстрая доставка</label>
-                    <input class="form-check-input" type="checkbox" value="" id="fast-delivery">
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <label class="form-check-label" for="contactless">Бесконтактная доставка</label>
-                    <input class="form-check-input pull-right" type="checkbox" value="" id="contactless">
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <label class="form-check-label" for="gift">Хочу подарок</label>
-                    <input class="form-check-input pull-right" type="checkbox" value="" id="gift">
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <label class="form-check-label" for="twice">В два раза больше</label>
-                    <input class="form-check-input pull-right" type="checkbox" value="" id="twice">
+                    <input class="form-check-input" type="checkbox" value="" id="is-student">
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="form-check col-lg-2 col-4 mx-auto mb-2">
                     <label class="form-check-label" for="for-company">На компанию</label>
-                    <input class="form-check-input pull-right" type="checkbox" value="" id="for-company">
+                    <input class="form-check-input" type="checkbox" value="" id="for-company">
                 </div>
             </div>
-            <div class="row align-items-center">
-                <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <label class="form-check-label" for="hot-only">Только горячим</label>
-                    <input class="form-check-input pull-right" type="checkbox" value="" id="hot-only">
-                </div>
-            </div>
+
         </form>
     </section>
 
@@ -501,9 +597,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
