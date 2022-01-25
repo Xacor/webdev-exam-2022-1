@@ -145,34 +145,35 @@
             <div class="row">
                 <div class="col-lg-6 mt-2">
                     <label class="form-label" for="area">Административный округ</label>
-                    <select id="area" class="form-select" aria-label="Default select example">
-                        <option selected>Не выбрано</option>
+                    <select id="area" class="form-select" aria-label="Default select example" name="area">
+                        <option value="not-chosen" selected>Не выбрано</option>
 
                     </select>
                 </div>
                 <div class="col-lg-6 mt-2">
                     <label class="form-label" for="district">Район</label>
-                    <select id="district" class="form-select" aria-label="Default select example">
-                        <option selected>Не выбрано</option>
+                    <select id="district" class="form-select" aria-label="Default select example" name="district">
+                        <option value="not-chosen" selected>Не выбрано</option>
                     </select>
                 </div>
             </div>
             <div class="row my-4">
                 <div class="col-lg-3 mt-2">
-                    <label class="form-label" for="type">Тип</label>
-                    <select id="type" class="form-select" aria-label="Default select example">
-                        <option selected>Не выбрано</option>
+                    <label class="form-label" for="typeObject">Тип</label>
+                    <select id="typeObject" class="form-select" aria-label="Default select example" name="typeObject">
+                        <option value="not-chosen" selected>Не выбрано</option>
 
                     </select>
                 </div>
                 <div class="col-lg-3 mt-2">
-                    <label class="form-label" for="discount">Соц. скидки</label>
-                    <select id="discount" class="form-select" aria-label="Default select example">
-                        <option selected>Не выбрано</option>
+                    <label class="form-label" for="socialPrivileges">Соц. скидки</label>
+                    <select id="socialPrivileges" class="form-select" aria-label="Default select example"
+                        name="socialPrivileges">
+                        <option value="not-chosen" selected>Не выбрано</option>
                     </select>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary mt-4 w-50 ">Найти</button>
+                    <button type="button" class="btn btn-primary mt-4 w-50 filter-btn">Найти</button>
                 </div>
             </div>
 

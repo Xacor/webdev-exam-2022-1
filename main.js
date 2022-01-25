@@ -3,17 +3,6 @@ let apiKey = "41119ee7-17d6-4bcd-9bd7-30490fe1a9cd";
 let apiUrl = "http://exam-2022-1-api.std-900.ist.mospolytech.ru/api/restaurants";
 let restaurantsJson;
 
-// let paginationInfo = {
-//     "currentPage": 1,
-//     "perPage": 20,
-//     "totalCount": 0,
-//     "totalPages": 0
-// }
-// function setPaginationInfo(records) {
-//     paginationInfo["totalCount"] = records.length
-//     paginationInfo["totalPages"] = 
-// }
-
 async function getRestaurants() {
     let url = new URL(apiUrl);
     url.searchParams.set('api_key', apiKey);
@@ -24,20 +13,20 @@ async function getRestaurants() {
     return json;
 }
 function createRestaurantTableItem(record) {
-    let item = document.querySelector("#tr-template").cloneNode(true)
-    item.classList.remove("d-none")
-    item.querySelector(".restaurant-name").innerHTML = record.name
-    item.querySelector(".restaurant-type").innerHTML = record.typeObject
-    item.querySelector(".restaurant-addr").innerHTML = record.address
-    item.querySelector(".restaurant-id").value = record.id
+    let item = document.querySelector("#tr-template").cloneNode(true);
+    item.classList.remove("d-none");
+    item.classList.add("elem");
+    item.querySelector(".restaurant-name").innerHTML = record.name;
+    item.querySelector(".restaurant-type").innerHTML = record.typeObject;
+    item.querySelector(".restaurant-addr").innerHTML = record.address;
+    item.querySelector(".restaurant-id").value = record.id;
 
-    return item
+    return item;
 }
 
 function renderRecords(records) {
+    clearTable()
     let restaurantTable = document.querySelector("tbody");
-    // let data = pagination(state)
-
     for (let i = 0; i < records.length; i++) {
         createFilterOption(records[i]);
         restaurantTable.append(createRestaurantTableItem(records[i]));
@@ -67,7 +56,7 @@ function createDistrictOption(record) {
 }
 
 function createTypeOption(record) {
-    let type = document.querySelector("#type");
+    let type = document.querySelector("#typeObject");
     let typeValues = Array.from(type.options).map(e => e.value);
     if (typeValues.indexOf(record.typeObject) == -1 && record.typeObject != null) {
         let newOption = document.createElement("option");
@@ -79,10 +68,8 @@ function createTypeOption(record) {
 }
 
 function createDiscountOption(record) {
-    let socialPrivileges = document.querySelector("#discount");
+    let socialPrivileges = document.querySelector("#socialPrivileges");
     let socialPrivilegesValues = Array.from(socialPrivileges.options).map(e => e.value);
-    console.log(socialPrivilegesValues);
-    console.log(record.socialPrivileges);
     if (socialPrivilegesValues.indexOf(String(record.socialPrivileges)) == -1 && record.socialPrivileges != null) {
         let newOption = document.createElement("option");
         newOption.value = record.socialPrivileges;
@@ -91,7 +78,6 @@ function createDiscountOption(record) {
     }
 }
 
-
 function createFilterOption(record) {
     createAreaOption(record);
     createDistrictOption(record);
@@ -99,22 +85,56 @@ function createFilterOption(record) {
     createDiscountOption(record);
 }
 
+function filterByArea(array, area) {
+    return array.filter(elem => elem.admArea == area)
+}
 
-// function pagination(data, page, rows) {
-//     let start = (page - 1) * rows;
-//     let end = start + rows - 1;
+function filterByDistrict(array, district) {
+    return array.filter(elem => elem.district == district)
+}
 
-//     var trimmedData = data.slice(start, end);
+function filterByType(array, typeObject) {
+    return array.filter(elem => elem.typeObject == typeObject)
+}
 
-//     var totalPages = Math.ceil(data.length / rows);
+function filterBySocial(array, socialPrivileges) {
+    return array.filter(elem => String(elem.socialPrivileges) == socialPrivileges)
+}
 
-//     return {
-//         "data": trimmedData,
-//         "pages": totalPages
-//     }
-// }
+function filterBtnHandler(event) {
+    let form = event.target.closest("form");
+    let result = [...restaurantsJson]
 
+    if (form.elements["area"].value != "not-chosen") {
+        result = filterByArea(result, form.elements["area"].value)
+    }
 
+    if (form.elements["district"].value != "not-chosen") {
+        result = filterByDistrict(result, form.elements["district"].value)
+    }
+
+    if (form.elements["typeObject"].value != "not-chosen") {
+        result = filterByType(result, form.elements["typeObject"].value)
+    }
+
+    if (form.elements["socialPrivileges"].value != "not-chosen") {
+        result = filterBySocial(result, form.elements["socialPrivileges"].value)
+    }
+
+    result.sort((a, b) => {
+        return a.rate < b.rate
+    });
+    renderRecords(result)
+}
+
+function clearTable() {
+    let elems = document.querySelectorAll(".elem");
+    for (let i = 0; i < elems.length; i++) {
+        elems[i].remove()
+
+    }
+}
 window.onload = function () {
     getRestaurants().then(renderRecords);
+    document.querySelector(".filter-btn").onclick = filterBtnHandler;
 }
