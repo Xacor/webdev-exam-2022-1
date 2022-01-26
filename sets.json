@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Сет 1",
+        "description": "Вкусный завтрак даст сил на весь день.",
+        "img": "images/menu1.jpeg"
+    },
+    {
+        "name": "Сет 2",
+        "description": "Сытный обед в середине дня.",
+        "img": "images/menu2.jpg"
+    },
+    {
+        "name": "Сет 3",
+        "description": "Теплый ужин согреевает вечером.",
+        "img": "images/menu3.jpeg"
+    },
+    {
+        "name": "Сет 4",
+        "description": "Вкусный завтрак даст сил на весь день.",
+        "img": "images/menu1.jpeg"
+    },
+    {
+        "name": "Сет 5",
+        "description": "Сытный обед в середине дня.",
+        "img": "images/menu2.jpg"
+    },
+    {
+        "name": "Сет 6",
+        "description": "Теплый ужин согреевает вечером.",
+        "img": "images/menu3.jpeg"
+    },
+    {
+        "name": "Сет 7",
+        "description": "Вкусный завтрак даст сил на весь день.",
+        "img": "images/menu1.jpeg"
+    },
+    {
+        "name": "Сет 8",
+        "description": "Сытный обед в середине дня.",
+        "img": "images/menu2.jpg"
+    },
+    {
+        "name": "Сет 9",
+        "description": "Теплый ужин согреевает вечером.",
+        "img": "images/menu3.jpeg"
+    },
+    {
+        "name": "Сет 10",
+        "description": "Вкусный завтрак даст сил на весь день.",
+        "img": "images/menu1.jpeg"
+    }
+]

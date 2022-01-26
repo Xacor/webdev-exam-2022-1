@@ -155,10 +155,33 @@ function calculateTotal(delta) {
     document.querySelector(".total").innerHTML = Number(document.querySelector(".total").innerHTML) + delta
 }
 
-window.onload = function () {
-    getRestaurants().then(renderRecords);
-    document.querySelector(".filter-btn").onclick = filterBtnHandler;
+async function getSets() {
+    let response = await fetch("./sets.json");
+    let json = await response.json();
+    console.log(json)
+    return json;
+}
 
+function createSetItem(record) {
+    let item = document.querySelector(".set-card").cloneNode(true);
+    item.classList.remove("d-none");
+    console.log(record)
+    item.querySelector(".set-name").innerHTML = record.name;
+    item.querySelector(".set-description").innerHTML = record.description;
+    item.querySelector(".card-image").src = record.img
+    return item
+}
+
+function renderSets(records) {
+    let menu = document.querySelector(".menu");
+    for (let i = 0; i < records.length; i++) {
+        menu.append(createSetItem(records[i]));
+    }
+}
+
+window.onload = function () {
+    getSets();
+    getRestaurants().then(renderRecords);
     for (let btn of document.querySelectorAll(".plus-btn")) {
         btn.onclick = plusBtnHandler;
     }
