@@ -134,7 +134,36 @@ function clearTable() {
 
     }
 }
+
+function plusBtnHandler(event) {
+    let counter = event.target.closest("div").querySelector("span");
+    counter.innerHTML = Number(counter.innerHTML) + 1;
+
+    let price = Number(event.target.closest(".card-body").querySelector(".price").innerHTML)
+    calculateTotal(price);
+}
+
+function minusBtnHandler(event) {
+    let counter = event.target.closest("div").querySelector("span");
+    if (Number(counter.innerHTML) - 1 < 0) return;
+    counter.innerHTML = Number(counter.innerHTML) - 1;
+    let price = Number(event.target.closest(".card-body").querySelector(".price").innerHTML)
+    calculateTotal(-price);
+}
+
+function calculateTotal(delta) {
+    document.querySelector(".total").innerHTML = Number(document.querySelector(".total").innerHTML) + delta
+}
+
 window.onload = function () {
     getRestaurants().then(renderRecords);
     document.querySelector(".filter-btn").onclick = filterBtnHandler;
+
+    for (let btn of document.querySelectorAll(".plus-btn")) {
+        btn.onclick = plusBtnHandler;
+    }
+
+    for (let btn of document.querySelectorAll(".minus-btn")) {
+        btn.onclick = minusBtnHandler;
+    }
 }
