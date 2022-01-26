@@ -174,13 +174,14 @@ function createSetItem(record) {
 
 function renderSets(records) {
     let menu = document.querySelector(".menu");
+    console.log(menu)
     for (let i = 0; i < records.length; i++) {
         menu.append(createSetItem(records[i]));
     }
 }
 
 window.onload = function () {
-    getSets();
+    getSets().then(renderSets);
     getRestaurants().then(renderRecords);
     for (let btn of document.querySelectorAll(".plus-btn")) {
         btn.onclick = plusBtnHandler;
