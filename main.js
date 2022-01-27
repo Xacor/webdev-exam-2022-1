@@ -9,8 +9,12 @@ async function getRestaurants() {
     let response = await fetch(url);
 
     let json = await response.json();
-    restaurantsJson = json;
-    return json;
+    if (!json.error) {
+        restaurantsJson = json;
+        return Promise.resolve(json);
+    } else {
+        return Promise.reject(json.error);
+    }
 }
 function createRestaurantTableItem(record) {
     let item = document.querySelector("#tr-template").cloneNode(true);
@@ -20,6 +24,7 @@ function createRestaurantTableItem(record) {
     item.querySelector(".restaurant-type").innerHTML = record.typeObject;
     item.querySelector(".restaurant-addr").innerHTML = record.address;
     item.querySelector(".restaurant-id").value = record.id;
+    item.querySelector(".select-rest-btn").onclick = selectRestBtnHandler;
 
     return item;
 }
@@ -28,12 +33,16 @@ function renderRecords(records) {
     clearTable();
     resetPagintaion();
 
+    records.sort((a, b) => {
+        return a.rate < b.rate;
+    });
     let restaurantTable = document.querySelector("tbody");
     for (let i = 0; i < records.length; i++) {
         createFilterOption(records[i]);
         restaurantTable.append(createRestaurantTableItem(records[i]));
     }
-    pagination(1)
+    setPrice(records[0]);
+    pagination(1);
 }
 
 function createAreaOption(record) {
@@ -159,7 +168,7 @@ function calculateTotal(delta) {
 }
 
 async function getSets() {
-    let response = await fetch("./sets.json");
+    let response = await fetch("http://webdev-exam-2022-1-z01jcn.std-1611.ist.mospolytech.ru/sets.json");
     let json = await response.json();
     return json;
 }
@@ -170,12 +179,13 @@ function createSetItem(record) {
     item.querySelector(".set-name").innerHTML = record.name;
     item.querySelector(".set-description").innerHTML = record.description;
     item.querySelector(".card-image").src = record.img
+    item.querySelector(".plus-btn").onclick = plusBtnHandler;
+    item.querySelector(".minus-btn").onclick = minusBtnHandler;
     return item
 }
 
 function renderSets(records) {
     let menu = document.querySelector(".menu");
-    console.log(menu)
     for (let i = 0; i < records.length; i++) {
         menu.append(createSetItem(records[i]));
     }
@@ -246,9 +256,34 @@ function pageLinkHandler(event) {
     }
     pagination(page);
 }
+
+async function getRestaurantByID(id) {
+    let url = new URL(apiUrl + `/${id}`);
+    url.searchParams.set('api_key', apiKey);
+    let response = await fetch(url);
+
+    let json = await response.json();
+    if (!json.error) {
+        return Promise.resolve(json);
+    } else {
+        return Promise.reject(json.error);
+    }
+}
+
+function selectRestBtnHandler(event) {
+    let restId = event.target.closest("form").querySelector(".restaurant-id").value;
+    getRestaurantByID(restId).then(setPrice);
+}
+
+function setPrice(record) {
+    let cards = document.querySelectorAll(".set-card");
+    for (let i = 1; i < cards.length; i++) {
+        cards[i].querySelector(".price").innerHTML = record["set_" + i];
+    }
+}
+
 window.onload = function () {
-    // getSets().then(renderSets);
-    getRestaurants().then(renderRecords);
+    getSets().then(renderSets).then(getRestaurants).then(renderRecords);
     document.querySelector(".filter-btn").onclick = filterBtnHandler;
     for (let btn of document.querySelectorAll(".plus-btn")) {
         btn.onclick = plusBtnHandler;
