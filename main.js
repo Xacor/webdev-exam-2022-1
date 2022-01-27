@@ -186,7 +186,9 @@ function pagination(newPage) {
     for (let i = 0; i < elems.length; i++) {
         elems[i].classList.add("d-none");
     }
-    for (let i = (newPage - 1) * 20; i < (newPage - 1) * 20 + 20; i++) {
+
+    let end = Math.min(((newPage - 1) * 20 + 20), document.querySelectorAll(".elem").length - (newPage - 1) * 20)
+    for (let i = (newPage - 1) * 20; i < end; i++) {
         elems[i].classList.remove("d-none");
     }
 }
@@ -213,7 +215,7 @@ function curPage() {
 function pageLinkHandler(event) {
     let page = event.target.dataset.page
 
-    if (page * 20 > maxPage()) return;
+    if (page * 20 > maxPage() * 20) return;
     if (page == "prev") page = Math.max(Number(curPage()) - 1, 1);
     if (page == "next") page = Math.min(Number(curPage()) + 1, Number(maxPage()));
 
