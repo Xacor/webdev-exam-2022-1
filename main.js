@@ -25,12 +25,15 @@ function createRestaurantTableItem(record) {
 }
 
 function renderRecords(records) {
-    clearTable()
+    clearTable();
+    resetPagintaion();
+
     let restaurantTable = document.querySelector("tbody");
     for (let i = 0; i < records.length; i++) {
         createFilterOption(records[i]);
         restaurantTable.append(createRestaurantTableItem(records[i]));
     }
+    pagination(1)
 }
 
 function createAreaOption(record) {
@@ -122,9 +125,9 @@ function filterBtnHandler(event) {
     }
 
     result.sort((a, b) => {
-        return a.rate < b.rate
+        return a.rate < b.rate;
     });
-    renderRecords(result)
+    renderRecords(result);
 }
 
 function clearTable() {
@@ -158,14 +161,12 @@ function calculateTotal(delta) {
 async function getSets() {
     let response = await fetch("./sets.json");
     let json = await response.json();
-    console.log(json)
     return json;
 }
 
 function createSetItem(record) {
     let item = document.querySelector(".set-card").cloneNode(true);
     item.classList.remove("d-none");
-    console.log(record)
     item.querySelector(".set-name").innerHTML = record.name;
     item.querySelector(".set-description").innerHTML = record.description;
     item.querySelector(".card-image").src = record.img
@@ -180,14 +181,82 @@ function renderSets(records) {
     }
 }
 
+function pagination(newPage) {
+    let elems = document.querySelectorAll(".elem");
+    for (let i = 0; i < elems.length; i++) {
+        elems[i].classList.add("d-none");
+    }
+    for (let i = (newPage - 1) * 20; i < (newPage - 1) * 20 + 20; i++) {
+        elems[i].classList.remove("d-none");
+    }
+}
+
+function resetPagintaion() {
+    let buttons = document.querySelectorAll(".page-link");
+
+    for (let i = 1; i <= 3; i++) {
+        buttons[i].innerHTML = i;
+        buttons[i].dataset.page = i;
+    }
+    buttons[1].closest("ul").querySelector(".active").classList.remove("active");
+    buttons[1].closest(".page-item").classList.add("active");
+}
+
+function maxPage() {
+    return Math.ceil(document.querySelectorAll(".elem").length / 20)
+}
+
+function curPage() {
+    return document.querySelector(".page-item.active").firstChild.dataset.page
+}
+
+function pageLinkHandler(event) {
+    let page = event.target.dataset.page
+
+    if (page * 20 > maxPage()) return;
+    if (page == "prev") page = Math.max(Number(curPage()) - 1, 1);
+    if (page == "next") page = Math.min(Number(curPage()) + 1, Number(maxPage()));
+
+    let buttons = document.querySelectorAll(".page-link");
+    event.target.closest("ul").querySelector(".active").classList.remove("active")
+    if (page == 1) {
+        for (let i = 1; i <= 3; i++) {
+            buttons[i].innerHTML = i;
+            buttons[i].dataset.page = i;
+        }
+        buttons[1].closest(".page-item").classList.add("active")
+    } else if (page == maxPage()) {
+        buttons[1].innerHTML = page - 2;
+        buttons[1].dataset.page = page - 2;
+        buttons[2].innerHTML = page - 1;
+        buttons[2].dataset.page = page - 1;
+        buttons[3].innerHTML = page;
+        buttons[3].dataset.page = page;
+        buttons[3].closest(".page-item").classList.add("active")
+    } else {
+        buttons[1].innerHTML = page - 1;
+        buttons[1].dataset.page = page - 1;
+        buttons[2].innerHTML = page;
+        buttons[2].dataset.page = page;
+        buttons[2].closest(".page-item").classList.add("active")
+        buttons[3].innerHTML = page - (-1);
+        buttons[3].dataset.page = page - (-1);
+    }
+    pagination(page);
+}
 window.onload = function () {
-    getSets().then(renderSets);
+    // getSets().then(renderSets);
     getRestaurants().then(renderRecords);
+    document.querySelector(".filter-btn").onclick = filterBtnHandler;
     for (let btn of document.querySelectorAll(".plus-btn")) {
         btn.onclick = plusBtnHandler;
     }
 
     for (let btn of document.querySelectorAll(".minus-btn")) {
         btn.onclick = minusBtnHandler;
+    }
+
+    for (let btn of document.querySelectorAll(".page-link")) {
+        btn.onclick = pageLinkHandler;
     }
 }

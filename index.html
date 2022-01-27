@@ -181,7 +181,7 @@
     </section>
 
     <section class="container mt-4">
-        <div class="table-responsive-md">
+        <div class="table-responsive-md" id="table">
             <table class="table table-striped table-bordered restaurant-table">
                 <thead>
                     <tr>
@@ -208,9 +208,13 @@
         </div>
         <nav aria-label="Search results pages">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link first-page-btn" href="#">Пeрвая страница</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link last-page-btn" href="#">Последняя страница</a></li>
+                <li class="page-item"><a class="page-link first-page-btn" data-page="prev">Предыдущая
+                        страница</a></li>
+                <li class="page-item active"><a class="page-link" data-page="1">1</a></li>
+                <li class="page-item"><a class="page-link" data-page="2">2</a></li>
+                <li class="page-item"><a class="page-link" data-page="3">3</a></li>
+                <li class="page-item"><a class="page-link last-page-btn" data-page="next">Следующая
+                        страница</a></li>
             </ul>
         </nav>
     </section>
