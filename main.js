@@ -75,7 +75,6 @@ function renderRecords(records) {
         restaurantTable.append(createRestaurantTableItem(records[i]));
     }
     selectedRestaurant = records[0];
-    setPrice(selectedRestaurant);
     setIsStudentAvailable(selectedRestaurant);
     pagination(1);
 }
@@ -296,7 +295,8 @@ function pageLinkHandler(event) {
 
 function selectRestBtnHandler(event) {
     let restId = event.target.closest("form").querySelector(".restaurant-id").value;
-    getRestaurantByID(restId).then(setPrice);
+    getSets().then(renderSets).then(getRestaurantByID(restId).then(setPrice))
+
 }
 
 function setPrice(record) {
@@ -317,7 +317,7 @@ function forCompanyCheckBoxHandler() {
 }
 
 window.onload = function () {
-    getSets().then(renderSets).then(getRestaurants).then(renderRecords);
+    getRestaurants().then(renderRecords);
     document.querySelector(".filter-btn").onclick = filterBtnHandler;
     document.querySelector("#is-student").onchange = isStudentCheckBoxHandler;
     document.querySelector("#for-company").onchange = forCompanyCheckBoxHandler;
