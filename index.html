@@ -45,13 +45,17 @@
         </div>
     </nav>
 
-    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="alerts my-3 sticky-top">
+        <div class="alert alert-dismissible fade show alert-template d-none text-center" role="alert">
+            <span class="msg fs-5">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
 
 
-    <section id="carousel-food" class="carousel slide col-sm-5 mx-auto" data-bs-ride="carousel">
+    <section id="carousel-food" class="carousel slide col-sm-6 mx-auto" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carousel-food" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -286,7 +290,7 @@
                         <div class="card mb-3 cart-item-template d-none">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-4 d-flex flex-row align-items-center">
+                                    <div class="col-5 d-flex flex-row align-items-center">
                                         <div>
                                             <img src="..." class="img-fluid rounded-3" alt="" width="64">
                                         </div>
@@ -302,7 +306,7 @@
                                             <span class="align-middle">&#8381;</span>
                                         </h5>
                                     </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-3 text-center">
                                         <h5>
                                             <span class="modal-subtotal align-middle">0</span>
                                             <span class="align-middle">&#8381;</span>
@@ -375,7 +379,7 @@
                         </div>
                     </div>
                     <h4>Доставка</h4>
-                    <form>
+                    <form class="modal-form">
                         <div class="row mb-4">
                             <label class="form-label col-lg-4" for="delivery-zone">Зона доставки:</label>
                             <div class="col-lg-8">
@@ -417,7 +421,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-primary">Подтвердить</button>
+                    <button type="button" class="btn btn-primary confirm-order-btn"
+                        data-bs-dismiss="modal">Подтвердить</button>
                 </div>
             </div>
         </div>

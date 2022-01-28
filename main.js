@@ -44,6 +44,19 @@ async function getRestaurantByID(id) {
     }
 }
 
+function showAlert(msg, category = 'success') {
+    let alerts = document.querySelector('.alerts');
+    let newAlertElement = document.querySelector('.alert-template').cloneNode(true);
+    newAlertElement.querySelector('.msg').innerHTML = msg;
+    if (category == 'success') {
+        newAlertElement.classList.add('alert-success')
+    } else {
+        newAlertElement.classList.add('alert-danger')
+    }
+    newAlertElement.classList.remove('d-none');
+    alerts.append(newAlertElement);
+}
+
 function createRestaurantTableItem(record) {
     let item = document.querySelector("#tr-template").cloneNode(true);
     item.classList.remove("d-none");
@@ -354,6 +367,7 @@ function forCompanyCheckBoxHandler() {
 }
 
 function prepareModalContent() {
+    document.querySelector(".modal-form").reset();
     clearCart();
     preapreModalOrderItems();
     prepareModalObjectInfo();
@@ -415,13 +429,20 @@ function prepareModalTotal() {
     document.querySelector(".modal-total").innerHTML = total;
 }
 
+function confirmOrderBtnHandler(event) {
+    showAlert("Заказ успешно создан");
+}
+
 window.onload = function () {
     disableCheckBoxes();
-    getRestaurants().then(renderRecords);
+    getRestaurants().then(
+        result => renderRecords(result),
+        error => showAlert(error, "danger"));
     document.querySelector(".filter-btn").onclick = filterBtnHandler;
     document.querySelector("#is-student").onchange = isStudentCheckBoxHandler;
     document.querySelector("#for-company").onchange = forCompanyCheckBoxHandler;
     document.querySelector(".make-order-btn").onclick = prepareModalContent;
+    document.querySelector(".confirm-order-btn").onclick = confirmOrderBtnHandler;
 
     for (let btn of document.querySelectorAll(".page-link")) {
         btn.onclick = pageLinkHandler;
