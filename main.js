@@ -3,7 +3,7 @@ let apiKey = "41119ee7-17d6-4bcd-9bd7-30490fe1a9cd";
 let apiUrl = "http://exam-2022-1-api.std-900.ist.mospolytech.ru/api/restaurants";
 let restaurantsJson;
 let selectedRestaurant;
-let prices = []
+let prices = [];
 
 async function getRestaurants() {
     let url = new URL(apiUrl);
@@ -18,6 +18,13 @@ async function getRestaurants() {
         return Promise.reject(json.error);
     }
 }
+
+async function getSets() {
+    let response = await fetch("http://webdev-exam-2022-1-z01jcn.std-1611.ist.mospolytech.ru/sets.json");
+    let json = await response.json();
+    return json;
+}
+
 function createRestaurantTableItem(record) {
     let item = document.querySelector("#tr-template").cloneNode(true);
     item.classList.remove("d-none");
@@ -110,39 +117,39 @@ function createFilterOption(record) {
 }
 
 function filterByArea(array, area) {
-    return array.filter(elem => elem.admArea == area)
+    return array.filter(elem => elem.admArea == area);
 }
 
 function filterByDistrict(array, district) {
-    return array.filter(elem => elem.district == district)
+    return array.filter(elem => elem.district == district);
 }
 
 function filterByType(array, typeObject) {
-    return array.filter(elem => elem.typeObject == typeObject)
+    return array.filter(elem => elem.typeObject == typeObject);
 }
 
 function filterBySocial(array, socialPrivileges) {
-    return array.filter(elem => String(elem.socialPrivileges) == socialPrivileges)
+    return array.filter(elem => String(elem.socialPrivileges) == socialPrivileges);
 }
 
 function filterBtnHandler(event) {
     let form = event.target.closest("form");
-    let result = [...restaurantsJson]
+    let result = [...restaurantsJson];
 
     if (form.elements["area"].value != "not-chosen") {
-        result = filterByArea(result, form.elements["area"].value)
+        result = filterByArea(result, form.elements["area"].value);
     }
 
     if (form.elements["district"].value != "not-chosen") {
-        result = filterByDistrict(result, form.elements["district"].value)
+        result = filterByDistrict(result, form.elements["district"].value);
     }
 
     if (form.elements["typeObject"].value != "not-chosen") {
-        result = filterByType(result, form.elements["typeObject"].value)
+        result = filterByType(result, form.elements["typeObject"].value);
     }
 
     if (form.elements["socialPrivileges"].value != "not-chosen") {
-        result = filterBySocial(result, form.elements["socialPrivileges"].value)
+        result = filterBySocial(result, form.elements["socialPrivileges"].value);
     }
 
     result.sort((a, b) => {
@@ -154,7 +161,7 @@ function filterBtnHandler(event) {
 function clearTable() {
     let elems = document.querySelectorAll(".elem");
     for (let i = 0; i < elems.length; i++) {
-        elems[i].remove()
+        elems[i].remove();
     }
 }
 
@@ -185,18 +192,12 @@ function calculateTotal() {
     document.querySelector(".total").innerHTML = total;
 }
 
-async function getSets() {
-    let response = await fetch("http://webdev-exam-2022-1-z01jcn.std-1611.ist.mospolytech.ru/sets.json");
-    let json = await response.json();
-    return json;
-}
-
 function createSetItem(record) {
     let item = document.querySelector(".set-card").cloneNode(true);
     item.classList.remove("d-none");
     item.querySelector(".set-name").innerHTML = record.name;
     item.querySelector(".set-description").innerHTML = record.description;
-    item.querySelector(".card-image").src = record.img
+    item.querySelector(".card-image").src = record.img;
     item.querySelector(".plus-btn").onclick = plusBtnHandler;
     item.querySelector(".minus-btn").onclick = minusBtnHandler;
     return item
@@ -233,15 +234,15 @@ function resetPagintaion() {
 }
 
 function maxPage() {
-    return Math.ceil(document.querySelectorAll(".elem").length / 20)
+    return Math.ceil(document.querySelectorAll(".elem").length / 20);
 }
 
 function curPage() {
-    return document.querySelector(".page-item.active").firstChild.dataset.page
+    return document.querySelector(".page-item.active").firstChild.dataset.page;
 }
 
 function pageLinkHandler(event) {
-    let page = event.target.dataset.page
+    let page = event.target.dataset.page;
 
     if (page * 20 > maxPage() * 20) return;
     if (page == "prev") page = Math.max(Number(curPage()) - 1, 1);
@@ -254,7 +255,8 @@ function pageLinkHandler(event) {
             buttons[i].innerHTML = i;
             buttons[i].dataset.page = i;
         }
-        buttons[1].closest(".page-item").classList.add("active")
+        buttons[1].closest(".page-item").classList.add("active");
+
     } else if (page == maxPage()) {
         buttons[1].innerHTML = page - 2;
         buttons[1].dataset.page = page - 2;
@@ -262,20 +264,19 @@ function pageLinkHandler(event) {
         buttons[2].dataset.page = page - 1;
         buttons[3].innerHTML = page;
         buttons[3].dataset.page = page;
-        buttons[3].closest(".page-item").classList.add("active")
+        buttons[3].closest(".page-item").classList.add("active");
+
     } else {
         buttons[1].innerHTML = page - 1;
         buttons[1].dataset.page = page - 1;
         buttons[2].innerHTML = page;
         buttons[2].dataset.page = page;
-        buttons[2].closest(".page-item").classList.add("active")
+        buttons[2].closest(".page-item").classList.add("active");
         buttons[3].innerHTML = page - (-1);
         buttons[3].dataset.page = page - (-1);
     }
     pagination(page);
 }
-
-
 
 async function getRestaurantByID(id) {
     let url = new URL(apiUrl + `/${id}`);
@@ -292,7 +293,6 @@ async function getRestaurantByID(id) {
 }
 
 
-
 function selectRestBtnHandler(event) {
     let restId = event.target.closest("form").querySelector(".restaurant-id").value;
     getRestaurantByID(restId).then(setPrice);
@@ -307,7 +307,6 @@ function setPrice(record) {
 }
 
 function isStudentCheckBoxHandler() {
-    console.log("clicked");
     calculateTotal();
 }
 
