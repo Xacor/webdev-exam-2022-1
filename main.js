@@ -366,7 +366,11 @@ function forCompanyCheckBoxHandler() {
     calculateTotal();
 }
 
-function prepareModalContent() {
+function prepareModalContent(event) {
+    if (selectedRestaurant == undefined) {
+        showAlert("Не выбран ресторан", "danger");
+        return;
+    }
     document.querySelector(".modal-form").reset();
     clearCart();
     preapreModalOrderItems();
