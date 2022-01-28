@@ -305,6 +305,12 @@ function enableCheckBoxes() {
     }
 }
 
+function disableCheckBoxes() {
+    for (let box of document.querySelectorAll(".form-check-input")) {
+        box.setAttribute("disabled", "");
+    }
+}
+
 function selectRestBtnHandler(event) {
     clearSets();
     enableCheckBoxes();
@@ -363,6 +369,7 @@ function prepareModalObjectInfo() {
 }
 
 window.onload = function () {
+    disableCheckBoxes();
     getRestaurants().then(renderRecords);
     document.querySelector(".filter-btn").onclick = filterBtnHandler;
     document.querySelector("#is-student").onchange = isStudentCheckBoxHandler;
