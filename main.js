@@ -210,12 +210,20 @@ function calculateTotal() {
 function createSetItem(record) {
     let item = document.querySelector(".set-card").cloneNode(true);
     item.classList.remove("d-none");
+    item.classList.add("set-item");
     item.querySelector(".set-name").innerHTML = record.name;
     item.querySelector(".set-description").innerHTML = record.description;
     item.querySelector(".card-image").src = record.img;
     item.querySelector(".plus-btn").onclick = plusBtnHandler;
     item.querySelector(".minus-btn").onclick = minusBtnHandler;
     return item
+}
+
+function clearSets() {
+    let items = document.querySelectorAll(".set-item");
+    for (let i = 0; i < items.length; i++) {
+        items[i].remove();
+    }
 }
 
 function renderSets(records) {
@@ -294,6 +302,7 @@ function pageLinkHandler(event) {
 }
 
 function selectRestBtnHandler(event) {
+    clearSets();
     let restId = event.target.closest("form").querySelector(".restaurant-id").value;
     getSets().then(renderSets).then(getRestaurantByID(restId).then(setPrice))
 
