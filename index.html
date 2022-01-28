@@ -15,7 +15,7 @@
     <script src="main.js"></script>
     <link rel="stylesheet" href="main.css">
 
-    <title>Document</title>
+    <title>Служба достаки еды</title>
 </head>
 
 <body>
@@ -222,7 +222,7 @@
     <section class="container border-top border-bottom mt-4">
         <h2 class="text-center" id="menu">Меню</h2>
         <div class="row menu">
-            <div class="feature col-lg-4 d-none set-card">
+            <div class="feature col-lg-4 d-none set-card card-group">
                 <div class="card mb-4 rounded-3 shadow-sm text-center">
                     <img class="card-image" src="...">
                     <div class="card-header py-3">
@@ -233,7 +233,7 @@
                         <h1 class="card-title pricing-card-title"><span class="price"></span> руб</h1>
                         <div class="d-flex justify-content-around mt-4">
                             <button type="button" class="btn btn-lg btn-outline-primary minus-btn">-</button>
-                            <span class="fs-3">0</span>
+                            <span class="fs-3 counter">0</span>
                             <button type="button" class="btn btn-lg btn-outline-primary plus-btn">+</button>
                         </div>
                     </div>
@@ -248,14 +248,15 @@
         <form>
             <div class="row align-items-center">
                 <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <label class="form-check-label" for="is-student">Являюсь студентом ВУЗа</label>
                     <input class="form-check-input" type="checkbox" value="" id="is-student">
+                    <label class="form-check-label" for="is-student">Являюсь студентом ВУЗа</label>
+
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <label class="form-check-label" for="for-company">На компанию</label>
                     <input class="form-check-input" type="checkbox" value="" id="for-company">
+                    <label class="form-check-label" for="for-company">На компанию</label>
                 </div>
             </div>
 

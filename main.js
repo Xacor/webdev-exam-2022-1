@@ -2,6 +2,8 @@
 let apiKey = "41119ee7-17d6-4bcd-9bd7-30490fe1a9cd";
 let apiUrl = "http://exam-2022-1-api.std-900.ist.mospolytech.ru/api/restaurants";
 let restaurantsJson;
+let selectedRestaurant;
+let prices = []
 
 async function getRestaurants() {
     let url = new URL(apiUrl);
@@ -29,6 +31,14 @@ function createRestaurantTableItem(record) {
     return item;
 }
 
+function setIsStudent(record) {
+    if (record.socialPrivileges == false) {
+        document.querySelector("#is-student").setAttribute("disabled", "");
+    } else {
+        document.querySelector("#is-student").removeAttribute("disabled", "");
+    }
+}
+
 function renderRecords(records) {
     clearTable();
     resetPagintaion();
@@ -41,7 +51,9 @@ function renderRecords(records) {
         createFilterOption(records[i]);
         restaurantTable.append(createRestaurantTableItem(records[i]));
     }
-    setPrice(records[0]);
+    selectedRestaurant = records[0];
+    setPrice(selectedRestaurant);
+    setIsStudent(selectedRestaurant);
     pagination(1);
 }
 
@@ -143,28 +155,34 @@ function clearTable() {
     let elems = document.querySelectorAll(".elem");
     for (let i = 0; i < elems.length; i++) {
         elems[i].remove()
-
     }
 }
 
 function plusBtnHandler(event) {
     let counter = event.target.closest("div").querySelector("span");
     counter.innerHTML = Number(counter.innerHTML) + 1;
-
-    let price = Number(event.target.closest(".card-body").querySelector(".price").innerHTML)
-    calculateTotal(price);
+    calculateTotal();
 }
 
 function minusBtnHandler(event) {
     let counter = event.target.closest("div").querySelector("span");
     if (Number(counter.innerHTML) - 1 < 0) return;
     counter.innerHTML = Number(counter.innerHTML) - 1;
-    let price = Number(event.target.closest(".card-body").querySelector(".price").innerHTML)
-    calculateTotal(-price);
+    calculateTotal();
 }
 
-function calculateTotal(delta) {
-    document.querySelector(".total").innerHTML = Number(document.querySelector(".total").innerHTML) + delta
+function calculateTotal() {
+    let total = 0;
+    let counters = document.querySelectorAll(".counter");
+    for (let i = 1; i < counters.length; i++) {
+        total += Number(counters[i].innerHTML) * prices[i];
+    }
+
+    if (selectedRestaurant.socialPrivileges && document.querySelector("#is-student").checked) {
+        total *= selectedRestaurant.socialDiscount / 100;
+    }
+
+    document.querySelector(".total").innerHTML = total;
 }
 
 async function getSets() {
@@ -257,6 +275,8 @@ function pageLinkHandler(event) {
     pagination(page);
 }
 
+
+
 async function getRestaurantByID(id) {
     let url = new URL(apiUrl + `/${id}`);
     url.searchParams.set('api_key', apiKey);
@@ -264,11 +284,14 @@ async function getRestaurantByID(id) {
 
     let json = await response.json();
     if (!json.error) {
+        selectedRestaurant = json;
         return Promise.resolve(json);
     } else {
         return Promise.reject(json.error);
     }
 }
+
+
 
 function selectRestBtnHandler(event) {
     let restId = event.target.closest("form").querySelector(".restaurant-id").value;
@@ -279,19 +302,24 @@ function setPrice(record) {
     let cards = document.querySelectorAll(".set-card");
     for (let i = 1; i < cards.length; i++) {
         cards[i].querySelector(".price").innerHTML = record["set_" + i];
+        prices[i] = record["set_" + i];
     }
+}
+
+function isStudentCheckBoxHandler() {
+    console.log("clicked");
+    calculateTotal();
+}
+
+function forCompanyCheckBoxHandler() {
+
 }
 
 window.onload = function () {
     getSets().then(renderSets).then(getRestaurants).then(renderRecords);
     document.querySelector(".filter-btn").onclick = filterBtnHandler;
-    for (let btn of document.querySelectorAll(".plus-btn")) {
-        btn.onclick = plusBtnHandler;
-    }
-
-    for (let btn of document.querySelectorAll(".minus-btn")) {
-        btn.onclick = minusBtnHandler;
-    }
+    document.querySelector("#is-student").onchange = isStudentCheckBoxHandler;
+    document.querySelector("#for-company").onchange = forCompanyCheckBoxHandler;
 
     for (let btn of document.querySelectorAll(".page-link")) {
         btn.onclick = pageLinkHandler;
