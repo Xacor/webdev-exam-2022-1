@@ -198,7 +198,7 @@ function calculateTotal() {
     let total = 0;
     let counters = document.querySelectorAll(".counter");
     for (let i = 1; i < counters.length; i++) {
-        total += Number(counters[i].innerHTML) * prices[i];
+        total += Number(counters[i].innerHTML) * companyCountMod * Math.floor(prices[i] * socialPriceMod * companyPriceMod);
     }
 
     document.querySelector(".total").innerHTML = total;
@@ -333,16 +333,15 @@ function setPrice(record) {
 }
 
 function isStudentCheckBoxHandler() {
-    calculateTotal();
-    isStudent = !isStudent;
-
+    isStudent = document.querySelector("#is-student").checked;
     if (isStudent) {
         socialPriceMod = selectedRestaurant.socialDiscount / 100;
     } else socialPriceMod = 1;
+    calculateTotal();
 }
 
 function forCompanyCheckBoxHandler() {
-    forCompany = !forCompany;
+    forCompany = document.querySelector("#for-company").checked;
 
     if (forCompany) {
         companyPriceMod = 0.5;
@@ -351,6 +350,7 @@ function forCompanyCheckBoxHandler() {
         companyPriceMod = 1;
         companyCountMod = 1;
     }
+    calculateTotal();
 }
 
 function prepareModalContent() {
