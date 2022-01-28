@@ -6,6 +6,9 @@ let selectedRestaurant;
 let prices = [];
 let isStudent = false;
 let forCompany = false;
+let socialPriceMod = 1;
+let companyPriceMod = 1;
+let companyCountMod = 1;
 
 async function getRestaurants() {
     let url = new URL(apiUrl);
@@ -198,10 +201,6 @@ function calculateTotal() {
         total += Number(counters[i].innerHTML) * prices[i];
     }
 
-    if (selectedRestaurant.socialPrivileges && document.querySelector("#is-student").checked) {
-        total *= selectedRestaurant.socialDiscount / 100;
-    }
-
     document.querySelector(".total").innerHTML = total;
 }
 
@@ -336,15 +335,54 @@ function setPrice(record) {
 function isStudentCheckBoxHandler() {
     calculateTotal();
     isStudent = !isStudent;
+
+    if (isStudent) {
+        socialPriceMod = selectedRestaurant.socialDiscount / 100;
+    } else socialPriceMod = 1;
 }
 
 function forCompanyCheckBoxHandler() {
     forCompany = !forCompany;
+
+    if (forCompany) {
+        companyPriceMod = 0.5;
+        companyCountMod = 5;
+    } else {
+        companyPriceMod = 1;
+        companyCountMod = 1;
+    }
 }
 
 function prepareModalContent() {
+    clearCart();
+    preapreModalOrderItems();
     prepareModalObjectInfo();
     prepareModalOptions();
+    prepareModalTotal();
+}
+
+function clearCart() {
+    for (let item of document.querySelectorAll(".cart-item")) {
+        item.remove();
+    }
+}
+
+function preapreModalOrderItems() {
+    let cart = document.querySelector(".modal-cart");
+    for (let card of document.querySelectorAll(".set-item")) {
+        if (card.querySelector(".counter").innerHTML == "0") continue;
+        let item = document.querySelector(".cart-item-template").cloneNode(true);
+        item.classList.remove("d-none");
+        item.classList.add("cart-item");
+
+        item.querySelector("img").src = card.querySelector("img").src;
+        item.querySelector(".modal-set-name").innerHTML = card.querySelector(".set-name").innerHTML
+        item.querySelector(".modal-price").innerHTML = Math.floor(Number(card.querySelector(".price").innerHTML) * socialPriceMod * companyPriceMod);
+        item.querySelector(".modal-counter").innerHTML = Number(card.querySelector(".counter").innerHTML) * companyCountMod;
+        item.querySelector(".modal-subtotal").innerHTML = Number(item.querySelector(".modal-price").innerHTML) * Number(item.querySelector(".modal-counter").innerHTML);
+
+        cart.append(item);
+    }
 }
 
 function prepareModalOptions() {
@@ -366,6 +404,15 @@ function prepareModalObjectInfo() {
     document.querySelector(".modal-district").innerHTML = selectedRestaurant.district;
     document.querySelector(".modal-address").innerHTML = selectedRestaurant.address;
     document.querySelector(".modal-rate").innerHTML = selectedRestaurant.rate;
+}
+
+function prepareModalTotal() {
+    let total = 0;
+    for (let item of document.querySelectorAll(".cart-item")) {
+        total += Number(item.querySelector(".modal-subtotal").innerHTML);
+    }
+    total += Number(document.querySelector(".modal-delivery-price").innerHTML);
+    document.querySelector(".modal-total").innerHTML = total;
 }
 
 window.onload = function () {
