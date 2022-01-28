@@ -74,8 +74,6 @@ function renderRecords(records) {
         createFilterOption(records[i]);
         restaurantTable.append(createRestaurantTableItem(records[i]));
     }
-    selectedRestaurant = records[0];
-    setIsStudentAvailable(selectedRestaurant);
     pagination(1);
 }
 
@@ -301,11 +299,23 @@ function pageLinkHandler(event) {
     pagination(page);
 }
 
+function enableCheckBoxes() {
+    for (let box of document.querySelectorAll(".form-check-input")) {
+        box.removeAttribute("disabled", "");
+    }
+}
+
 function selectRestBtnHandler(event) {
     clearSets();
+    enableCheckBoxes();
     let restId = event.target.closest("form").querySelector(".restaurant-id").value;
-    getSets().then(renderSets).then(getRestaurantByID(restId).then(setPrice))
-
+    getSets()
+        .then(renderSets)
+        .then(function () {
+            getRestaurantByID(restId)
+                .then(setPrice)
+                .then(setIsStudentAvailable)
+        });
 }
 
 function setPrice(record) {
@@ -314,6 +324,7 @@ function setPrice(record) {
         cards[i].querySelector(".price").innerHTML = record["set_" + i];
         prices[i] = record["set_" + i];
     }
+    return record;
 }
 
 function isStudentCheckBoxHandler() {
@@ -325,11 +336,38 @@ function forCompanyCheckBoxHandler() {
     forCompany = !forCompany;
 }
 
+function prepareModalContent() {
+    prepareModalObjectInfo();
+    prepareModalOptions();
+}
+
+function prepareModalOptions() {
+    if (isStudent) {
+        document.querySelector(".modal-is-student").classList.remove("d-none");
+    } else {
+        document.querySelector(".modal-is-student").classList.add("d-none");
+    }
+    if (forCompany) {
+        document.querySelector(".modal-for-company").classList.remove("d-none");
+    } else {
+        document.querySelector(".modal-for-company").classList.add("d-none");
+    }
+}
+
+function prepareModalObjectInfo() {
+    document.querySelector(".modal-object-name").innerHTML = selectedRestaurant.name;
+    document.querySelector(".modal-adm-area").innerHTML = selectedRestaurant.admArea;
+    document.querySelector(".modal-district").innerHTML = selectedRestaurant.district;
+    document.querySelector(".modal-address").innerHTML = selectedRestaurant.address;
+    document.querySelector(".modal-rate").innerHTML = selectedRestaurant.rate;
+}
+
 window.onload = function () {
     getRestaurants().then(renderRecords);
     document.querySelector(".filter-btn").onclick = filterBtnHandler;
     document.querySelector("#is-student").onchange = isStudentCheckBoxHandler;
     document.querySelector("#for-company").onchange = forCompanyCheckBoxHandler;
+    document.querySelector(".make-order-btn").onclick = prepareModalContent;
 
     for (let btn of document.querySelectorAll(".page-link")) {
         btn.onclick = pageLinkHandler;

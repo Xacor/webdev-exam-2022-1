@@ -248,14 +248,14 @@
         <form>
             <div class="row align-items-center">
                 <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="is-student">
+                    <input class="form-check-input" type="checkbox" value="" id="is-student" disabled>
                     <label class="form-check-label" for="is-student">Являюсь студентом ВУЗа</label>
 
                 </div>
             </div>
             <div class="row align-items-center">
                 <div class="form-check col-lg-2 col-4 mx-auto mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="for-company">
+                    <input class="form-check-input" type="checkbox" value="" id="for-company" disabled>
                     <label class="form-check-label" for="for-company">На компанию</label>
                 </div>
             </div>
@@ -273,7 +273,7 @@
                 </strong>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                <button class="btn btn-primary make-order-btn" type="button" data-bs-toggle="modal"
                     data-bs-target="#cartModal">Оформить заказ</button>
             </div>
         </div>
@@ -289,12 +289,12 @@
                 <div class="modal-body">
 
                     <h4>Позиции заказа</h4>
-                    <div class="card mb-3 template">
+                    <div class="card mb-3 cart-item-template d-none">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex flex-row align-items-center">
                                     <div>
-                                        <img src="images/dish.png" class="img-fluid rounded-3" alt="" width="64">
+                                        <img src="..." class="img-fluid rounded-3" alt="" width="64">
                                     </div>
                                     <div class="ms-3">
                                         <h5></h5>
@@ -311,13 +311,21 @@
                     </div>
 
                     <h4>Дополнительные опции</h4>
-                    <ul class="list-unstyled">
-                        <li class="d-flex justify-content-between">
+                    <ul class="list-unstyled mb-4">
+                        <li class="d-flex justify-content-around d-none modal-is-student">
                             <div>
                                 <span>Студент ВУЗа</span>
                             </div>
                             <div>
                                 <span>-10%</span>
+                            </div>
+                        </li>
+                        <li class="d-flex justify-content-between d-none modal-for-company">
+                            <div>
+                                <span>На компанию</span>
+                            </div>
+                            <div>
+                                <span>+250%</span>
                             </div>
                         </li>
 
@@ -329,7 +337,7 @@
                                 <p>Название предприятия:</p>
                             </div>
                             <div>
-                                <p></p>
+                                <p class="modal-object-name"></p>
                             </div>
                         </li>
                         <li class="d-flex justify-content-between">
@@ -337,7 +345,7 @@
                                 <p>Административный округ:</p>
                             </div>
                             <div>
-                                <p></p>
+                                <p class="modal-adm-area"></p>
                             </div>
                         </li>
                         <li class="d-flex justify-content-between">
@@ -345,7 +353,7 @@
                                 <p>Район:</p>
                             </div>
                             <div>
-                                <p></p>
+                                <p class="modal-district"></p>
                             </div>
                         </li>
                         <li class="d-flex justify-content-between">
@@ -353,7 +361,7 @@
                                 <p>Адрес:</p>
                             </div>
                             <div>
-                                <p class="text-muted"></p>
+                                <p class="text-muted modal-address"></p>
                             </div>
                         </li>
                         <li class="d-flex justify-content-between">
@@ -361,7 +369,7 @@
                                 <p>Рейтинг:</p>
                             </div>
                             <div>
-                                <p></p>
+                                <p class="modal-rate"></p>
                             </div>
                         </li>
                     </ul>
