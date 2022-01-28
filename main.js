@@ -4,6 +4,8 @@ let apiUrl = "http://exam-2022-1-api.std-900.ist.mospolytech.ru/api/restaurants"
 let restaurantsJson;
 let selectedRestaurant;
 let prices = [];
+let isStudent = false;
+let forCompany = false;
 
 async function getRestaurants() {
     let url = new URL(apiUrl);
@@ -25,6 +27,20 @@ async function getSets() {
     return json;
 }
 
+async function getRestaurantByID(id) {
+    let url = new URL(apiUrl + `/${id}`);
+    url.searchParams.set('api_key', apiKey);
+    let response = await fetch(url);
+
+    let json = await response.json();
+    if (!json.error) {
+        selectedRestaurant = json;
+        return Promise.resolve(json);
+    } else {
+        return Promise.reject(json.error);
+    }
+}
+
 function createRestaurantTableItem(record) {
     let item = document.querySelector("#tr-template").cloneNode(true);
     item.classList.remove("d-none");
@@ -38,7 +54,7 @@ function createRestaurantTableItem(record) {
     return item;
 }
 
-function setIsStudent(record) {
+function setIsStudentAvailable(record) {
     if (record.socialPrivileges == false) {
         document.querySelector("#is-student").setAttribute("disabled", "");
     } else {
@@ -60,7 +76,7 @@ function renderRecords(records) {
     }
     selectedRestaurant = records[0];
     setPrice(selectedRestaurant);
-    setIsStudent(selectedRestaurant);
+    setIsStudentAvailable(selectedRestaurant);
     pagination(1);
 }
 
@@ -278,21 +294,6 @@ function pageLinkHandler(event) {
     pagination(page);
 }
 
-async function getRestaurantByID(id) {
-    let url = new URL(apiUrl + `/${id}`);
-    url.searchParams.set('api_key', apiKey);
-    let response = await fetch(url);
-
-    let json = await response.json();
-    if (!json.error) {
-        selectedRestaurant = json;
-        return Promise.resolve(json);
-    } else {
-        return Promise.reject(json.error);
-    }
-}
-
-
 function selectRestBtnHandler(event) {
     let restId = event.target.closest("form").querySelector(".restaurant-id").value;
     getRestaurantByID(restId).then(setPrice);
@@ -308,10 +309,11 @@ function setPrice(record) {
 
 function isStudentCheckBoxHandler() {
     calculateTotal();
+    isStudent = !isStudent;
 }
 
 function forCompanyCheckBoxHandler() {
-
+    forCompany = !forCompany;
 }
 
 window.onload = function () {
