@@ -231,7 +231,7 @@ function createSetItem(record) {
 
 function clearSets() {
     let items = document.querySelectorAll(".set-item");
-    for (let i = 0; i < items.length; i++) {
+    for (let i = 9; i < items.length; i++) {
         items[i].remove();
     }
 }
@@ -324,15 +324,16 @@ function disableCheckBoxes() {
 }
 
 function selectRestBtnHandler(event) {
-    clearSets();
     enableCheckBoxes();
     let restId = event.target.closest("form").querySelector(".restaurant-id").value;
     getSets()
         .then(renderSets)
+        .then(clearSets)
         .then(function () {
             getRestaurantByID(restId)
                 .then(setPrice)
                 .then(setIsStudentAvailable)
+                .then(calculateTotal)
         });
 }
 
