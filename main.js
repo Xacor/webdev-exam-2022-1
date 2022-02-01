@@ -305,8 +305,8 @@ function pageLinkHandler(event) {
         buttons[2].innerHTML = page;
         buttons[2].dataset.page = page;
         buttons[2].closest(".page-item").classList.add("active");
-        buttons[3].innerHTML = page - (-1);
-        buttons[3].dataset.page = page - (-1);
+        buttons[3].innerHTML = page + 1;
+        buttons[3].dataset.page = page + 1;
     }
     pagination(page);
 }
