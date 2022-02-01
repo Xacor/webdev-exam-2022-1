@@ -249,7 +249,7 @@ function pagination(newPage) {
         elems[i].classList.add("d-none");
     }
 
-    let end = Math.min(((newPage - 1) * 20 + 20), document.querySelectorAll(".elem").length - (newPage - 1) * 20)
+    let end = Math.min(((newPage - 1) * 20 + 20), document.querySelectorAll(".elem").length)
     for (let i = (newPage - 1) * 20; i < end; i++) {
         elems[i].classList.remove("d-none");
     }
